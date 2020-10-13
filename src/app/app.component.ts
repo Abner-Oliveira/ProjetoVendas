@@ -15,7 +15,6 @@ export class AppComponent {
   ];
 
   private onClick() {
-    alert('Clicked in menu item')
+    alert('Teste de Commit')
   }
-
 }
