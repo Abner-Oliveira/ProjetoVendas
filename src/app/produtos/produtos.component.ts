@@ -1,8 +1,15 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ListProdutos } from './produtos.service';
 import { PoTableAction, PoTableColumn, PoModalComponent } from '@po-ui/ng-components';
-import { PoCheckboxGroupOption, PoRadioGroupOption } from '@po-ui/ng-components';  //Modal do botão Excluir
 import { PoDialogAlertLiterals, PoDialogConfirmLiterals, PoDialogService } from '@po-ui/ng-components';  //Modal do botão Excluir
+
+interface CamposGrid{
+  produto: string;
+  categoria: string;
+  valor: number;
+  fornecedor: string;
+  quantidade: string;
+}
 
 @Component({
   selector: 'app-produtos',
@@ -35,18 +42,7 @@ export class ProdutosComponent implements OnInit {
       label: 'Excluir'
     }
   ]
-////////////////////////////Modal do botão Excluir//////////////////////////
-  public readonly dialogActionOptions: Array<PoCheckboxGroupOption> = [
-    { label: 'Ok', value: 'ok' },
-    { label: 'Cancel', value: 'cancel' },
-    { label: 'Confirm', value: 'confirm' }
-  ];
 
-  public readonly dialogMethodOptions: Array<PoRadioGroupOption> = [
-    { label: 'Alert', value: 'alert' },
-    { label: 'Confirm', value: 'confirm' }
-  ];
-/////////////////////////////////////////////////////////////////////////////
   @ViewChild(PoModalComponent, { static: true }) poModal: PoModalComponent;
 //  @ViewChild(PoTableComponent, { static: true }) poTable: PoTableComponent;
 
@@ -77,7 +73,7 @@ export class ProdutosComponent implements OnInit {
     let posicaolinha = this.aItems.indexOf(item);
     this.openDialog(posicaolinha); //Modal do botão Excluir
   }
-////////////////////////////Modal do botão Excluir//////////////////////////
+
   alertDialog() {
     this.poAlert.alert({
       literals: this.literalsAlert,
@@ -85,29 +81,6 @@ export class ProdutosComponent implements OnInit {
       message: this.message,
       ok: () => (this.actionOptions.includes('ok') ? (this.action = 'OK') : undefined)
     });
-  }
-
-  changeLiterals() {
-    let literalsModel;
-    try {
-      literalsModel = this.literals ? JSON.parse(this.literals) : undefined;
-    } catch (error) {
-      literalsModel = undefined;
-    }
-
-    if (this.dialogMethod === 'alert') {
-      this.literalsAlert = literalsModel;
-    } else if (this.dialogMethod === 'confirm') {
-      this.literalsConfirm = literalsModel;
-    }
-  }
-
-  changeMethod() {
-    if (this.dialogMethod === 'alert') {
-      this.help = 'Ex: { "ok": "Concluído" }';
-    } else {
-      this.help = 'Ex: { "cancel": "Não", "confirm": "Sim" }';
-    }
   }
   
   confirmDialog(posicaolinha) {
@@ -135,18 +108,5 @@ export class ProdutosComponent implements OnInit {
     this.literalsAlert = undefined;
     this.literalsConfirm = undefined;
     this.help = '';
-  }
-////////////////////////////////////////////////////////////////////////////
-}
-
-class CamposGrid{
-  produto: string;
-  categoria: string;
-  valor: number;
-  fornecedor: string;
-  quantidade: string;
-
-  constructor(){
-
   }
 }
