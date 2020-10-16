@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ListProdutos } from './produtos.service';
-import { PoTableAction, PoTableColumn, PoModalComponent } from '@po-ui/ng-components';
+import { PoTableAction, PoTableColumn } from '@po-ui/ng-components';
 import { PoDialogAlertLiterals, PoDialogConfirmLiterals, PoDialogService } from '@po-ui/ng-components';  //Modal do botão Excluir
 
 interface CamposGrid{
@@ -43,12 +43,9 @@ export class ProdutosComponent implements OnInit {
     }
   ]
 
-  @ViewChild(PoModalComponent, { static: true }) poModal: PoModalComponent;
-//  @ViewChild(PoTableComponent, { static: true }) poTable: PoTableComponent;
-
   constructor(
     private listprodutos: ListProdutos,
-    private poAlert: PoDialogService //Modal do botão Excluir
+    private poAlert: PoDialogService
   ) { }
 
   ngOnInit() {
@@ -66,12 +63,11 @@ export class ProdutosComponent implements OnInit {
     let totalproduto = item.quantidade * item.valor;
 
     alert("Produto: " + produto + ". Quantidade total do produto " + totalproduto);
-    //this.poModal.open();
   }
 
   delete(item) {
     let posicaolinha = this.aItems.indexOf(item);
-    this.openDialog(posicaolinha); //Modal do botão Excluir
+    this.openDialog(posicaolinha);
   }
 
   alertDialog() {
