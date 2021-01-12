@@ -12,6 +12,7 @@ import { PoTemplatesModule } from '@po-ui/ng-templates';
 import { MenuComponent } from './menu/menu.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ProdutosComponent } from './produtos/produtos.component';
+import { FormprodutoComponent } from './produtos/formproduto/formproduto.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { ProdutosComponent } from './produtos/produtos.component';
     AppComponent,
     MenuComponent,
     ClientesComponent,
-    ProdutosComponent
+    ProdutosComponent,
+    FormprodutoComponent
   ],
   imports: [
     BrowserModule,

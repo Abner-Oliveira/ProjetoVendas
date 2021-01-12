@@ -1,6 +1,56 @@
 <!--<p>produtos works!</p>-->
 
 <po-page-list p-title="Produtos">
+  <!--<po-multiselect name="multiselect" p-label="PO Multiselect" [p-options]="options"> </po-multiselect><-->
+  <po-button p-label="Incluir" 
+             (p-click)="incluiProduto()"
+             p-type="primary">
+  </po-button>
+  <po-accordion class="po-lg-12 po-md-12 po-sm-12 po-mb-2 po-pt-1 po-pr-0 po-pl-0 accordionNoBorder">
+    <po-accordion-item p-label="Filtros" #accordionFiltros>
+      <po-combo
+        #comboFiltro
+        name="combo"
+        class="po-lg-6 po-md-6 po-sm-6"
+        p-label="Selecione uma opção para o filtro"
+        [p-options]="options"
+        (p-change)="changeCmpFilter($event)"
+      >
+      </po-combo>
+      <!--</div>(p-change)="changeCmpFilter($event)"<-->
+      <!--<div *ngSwitchDefault></div><-->
+      <!--<div *ngSwitchDefault><-->
+        <po-input
+          #txtFiltro
+          *ngIf="opcaoSelecionado == 'produto' || opcaoSelecionado == 'fornecedor'"
+          class="po-lg-4 po-md-6 po-sm-6"
+          [p-label]="cLabelInput"
+          (p-change)="GetValorFiltro($event)"
+        >
+        </po-input>
+
+        <po-number 
+          *ngIf="opcaoSelecionado == 'quantidade'"
+          class="po-lg-4 po-md-6 po-sm-6"
+          name="qtdprod"
+          p-label="Quantidade em estoque"
+          (p-change)="GetValorFiltro($event)"
+          >
+        </po-number>
+      <!--</div><-->
+      <div class="po-lg-1 po-md-2 po-sm-2 po-pull-right">
+        <div class="po-select-container">
+          <po-button #btnIncFiltro class="" (p-click)="filtrarTabela()" p-label="Incluir filtro"> </po-button>
+        </div>
+      </div>
+    </po-accordion-item>
+  </po-accordion>
+  <po-disclaimer-group 
+    [p-disclaimers]="afiltrosDisclamer"
+    (p-change)="changeFilters(afiltrosDisclamer)"
+  >
+  </po-disclaimer-group>
+  <div class="po-lg-12 po-md-12 po-pl-0 po-pr-0">
     <po-table
     p-selectable = "false"
     p-single-select
@@ -9,8 +59,8 @@
     [p-columns]="aColumns"
     [p-items]="aItems"
     [p-actions]="actions"
-    >
-    <po-button p-label="Alterar" (p-click)="onClick()"> </po-button><-->
-  </po-table>
-  <!--<-->
+      >
+    </po-table>
+  </div> 
 </po-page-list>
+<!--<-->

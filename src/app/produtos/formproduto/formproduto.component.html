@@ -1,0 +1,50 @@
+<po-page-edit
+    p-title="Cadastro de Produtos"
+    p-cancel="cancel()"
+    p-save="save()">
+    <po-input
+        #txtNomeProduto
+        class="po-lg-4 po-md-6 po-sm-6"
+        p-label="Nome do produto"
+        (p-change)="GetDadosProduto($event, 'Nome do produto')"
+        >
+    </po-input>
+    <po-input
+        class="po-lg-4 po-md-6 po-sm-6"
+        p-label="Categoria do produto"
+        (p-change)="GetDadosProduto($event, 'Categoria do produto')"
+        >
+    </po-input>
+    <po-input
+        class="po-lg-4 po-md-6 po-sm-6"
+        p-label="Nome do fornecedor"
+        (p-change)="GetDadosProduto($event, 'Nome do fornecedor')"
+        >
+    </po-input>
+    <po-decimal
+
+        class="po-lg-2 po-md-2 po-sm-2" 
+        name="decimal" 
+        p-label="Valor unitário"
+        (p-change)="GetDadosProduto($event, 'Valor unitario')"
+        >
+    </po-decimal>
+    <po-decimal
+        class="po-lg-3 po-md-2 po-sm-4"
+        name="decimal"
+        p-label="Quantidade em estoque"
+        (p-change)="GetDadosProduto($event, 'Quantidade em estoque')"
+        >
+    </po-decimal>
+    <span class="po-lg-12 po-md-12 po-sm-12 po-xl-10 po-mt-2">
+        <po-button class="po-pull-right po-lg-2 po-md-2 po-sm-2"
+                   p-label="Salvar"
+                   p-type="primary"
+                   (p-click)="insereProduto()">
+        </po-button>
+        <po-button class="po-pull-right po-lg-2 po-md-2 po-sm-2"
+                   p-label="Voltar"
+                   (p-click)="retornaProduto()">
+        </po-button>
+    </span>
+</po-page-edit>
